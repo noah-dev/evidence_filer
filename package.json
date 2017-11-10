@@ -1,0 +1,19 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "UMKC will need a tool that will manage the 1,500+ documents collected and used to support the university’s Higher Learning Commission Accreditation Reaffirmation process. Help us keep UMKC accredited!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noah-dev/UMKCFS2017_Hackathon.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noah-dev/UMKCFS2017_Hackathon/issues"
+  },
+  "homepage": "https://github.com/noah-dev/UMKCFS2017_Hackathon#readme"
+}
