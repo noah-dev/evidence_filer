@@ -25,5 +25,7 @@ Provide an interface for UMKC committee members to search for or browse submitte
 * Allow members to browse all documents by the department, HLC category, etc.
 * Provide a search box to allow members to search for documents by keywords in the department or document name. Ideally also provide full-text document searching.
 * Members would be able to access and open the file within the browse/search results.
-Document taxonomies:
+
+### Document taxonomies:
+
 * The tool will need to control values for department and HLC category and related assumed practices. Admins will need to be able to maintain value lists for those fields. Bonus points for analytics functionality (# documents by department, category, and year).
