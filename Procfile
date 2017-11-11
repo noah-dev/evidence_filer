@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath hlc_doc_database hlc_doc_database.wsgi --log-file -
