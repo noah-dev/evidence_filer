@@ -36,7 +36,7 @@ if not SECRET_KEY and DEBUG:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eventsonmap.herokuapp.com','localhost','testserver']
+ALLOWED_HOSTS = ['hlcdocs.herokuapp.com','localhost']
 
 # SSL
 if not DEBUG:
