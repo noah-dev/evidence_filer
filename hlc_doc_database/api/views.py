@@ -38,7 +38,7 @@ def upload(request):
             for chunk in file.chunks():
                 dest.write(chunk)
 
-        doc_id = doc_hlc + save_file_name
+        doc_id = doc_hlc + "_" + save_file_name
         # Could be refactored to use django forms
         new_doc = DocMetadata(  doc_id = doc_id,
                                 doc_dept = doc_dept,

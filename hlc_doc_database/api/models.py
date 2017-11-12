@@ -12,10 +12,10 @@ class DocMetadata(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
 
     def __repr__(self):
-        return self.document_id
+        return self.doc_id
 
     def __str__(self):
-        return self.document_id
+        return self.doc_id
 
     def to_dict(self):
         keys = [field.name for field in self._meta.fields + self._meta.many_to_many]
