@@ -1,8 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>File Retrieve from JSON</title>
+    <link rel="stylesheet" href="{% static 'aaw/style/index.css' %}">
+    <link rel="stylesheet" href="{% static 'aaw/style/HomePage.css' %}">
+
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
@@ -36,6 +40,7 @@
     </script>
 </head>
 <body>
+<h1 align="absolute" class="title_heading">UMKC DOCUMENT FILTERING</h1>
 <center>
     <strong>Filter by Category</strong>
     <select id="hlc" onchange="filterByHLC()">

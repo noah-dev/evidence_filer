@@ -49,15 +49,14 @@ def upload(request):
                                 doc_name = save_file_name,
                                 hlc_cat = doc_hlc,
                                 hlc_cmpt = "_",
-                                justification = "_",
-                                submitter = "blank@localhost.local",
+                                justification = doc_just,
+                                submitter = doc_submitter,
                                 upload_time = 0)
         new_doc.save()
                 
     return HttpResponseRedirect("/aaw/upload")
 def retrival(request):
     hlc_category = "cr1"
-    # docs = DocMetadata.objects.filter(hlc_cat=hlc_category).values()
     docs = DocMetadata.objects.values()
     return JsonResponse(list(docs), safe=False)
 
@@ -70,7 +69,7 @@ def serve_file(request):
         file_name = request.GET['file_name']
         hlc_file_name = hlc + "/" + file_name
     except:
-        hlc_file_name = "cr1/CS_p_2016.pptx"
+        raise Http404
         
     file_path = os.path.join(FILES_FOLDER, hlc_file_name)
 
@@ -83,12 +82,8 @@ def serve_file(request):
 #
 def taxonomy(request):
     docs =  list(DocMetadata.objects.values())
-    # by_year = list(docs.values('doc_year'))
-    # by_dept = list(docs.values('doc_dept'))
-    # by_hlc = list(docs.values('hlc_cat'))
 
     by_year, by_dept, by_hlc = {}, {}, {}
-
     # https://stackoverflow.com/questions/3496518/python-using-a-dictionary-to-count-the-items-in-a-list
     for doc in docs:
         for key in doc:

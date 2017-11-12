@@ -17,6 +17,7 @@
 
     <form action="/api/upload/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <center>
         <table>
             <!--<tr>
                 <td><strong> Department Name: </strong></td>
@@ -60,11 +61,11 @@
                 <td><input type="file" name = "uploadfile" id="uploadfile" value="Upload File"></td>
             </tr>
         </table>
+        </center>
         <br>
         <br>
         <br>
         <center><button id="submit" value="Save and Submit" ng-click="saveUploadedDetails()">Save and Submit</button></center>
-
     </form>
 
 </body>
