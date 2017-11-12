@@ -1,64 +1,68 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" ng-app="FileDetails">
 <head>
     <meta charset="UTF-8">
     <title>assert Almost True</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-    <script type="text/javascript" src="..\JS\saveUploadedDetails.js"></script>
-
-
-
+    <!--
+        <script type="text/javascript" src="..\JS\saveUploadedDetails.js"></script>
+    -->
+    <script type="text/javascript" src="{% static 'aaw/js/saveUploadedDetails.js' %}"></script>
 </head>
 <body ng-controller="uploadfile">
 
-<table>
-    <!--<tr>
-        <td><strong> Department Name: </strong></td>
-        <td><input type="text" id="deptname" placeholder="Enter your department name"><br></td>
+    <form action="/api/upload/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <!--<tr>
+                <td><strong> Department Name: </strong></td>
+                <td><input type="text" id="deptname" placeholder="Enter your department name"><br></td>
 
-    </tr>-->
-    <tr>
-        <td><strong> Department Name: </strong></td>
-        <td>
-            <select id="deptname">
-                <option value="CS">Computer Science</option>
-                <option value="EE">Electrical Engineering</option>
-                <option value="COMM">Communication Engineering</option>
-                <option value="N/W">Networking</option>
-            </select>
-        </td>
-    </tr>
+            </tr>-->
+            <tr>
+                <td><strong> Department Name: </strong></td>
+                <td>
+                    <select id="deptname" name="deptname">
+                        <option value="CS">Computer Science</option>
+                        <option value="EE">Electrical Engineering</option>
+                        <option value="COMM">Communication Engineering</option>
+                        <option value="N/W">Networking</option>
+                    </select>
+                </td>
+            </tr>
 
-    <tr>
-        <td><strong> Document Name: </strong></td>
-        <td><input type="text" id="docname" placeholder="Enter your document name"></td>
-    </tr>
-    <tr>
-        <td><strong> Document Year: </strong></td>
-        <td><input type="text" id="docyear" placeholder="Enter your document name"></td>
-    </tr>
-    <tr>
-        <td><strong> Comments: </strong></td>
-        <td><input type="text" id="justification" placeholder="Enter the justification after uploading document"></td>
-    </tr>
-    <tr>
-        <td><strong> HLC Category: </strong></td>
-        <td><input type="text" id="hlc" placeholder="Enter the HLC Category"></td>
-    </tr>
-    <tr>
-        <td><strong> Comments: </strong></td>
-        <td><input type="text" id="submitter" placeholder="Enter the submitter name"></td>
-    </tr>
-    <tr>
-        <td><strong> Upload Files:</strong></td>
-        <td><input type="file" id="uploadfile" value="Upload File"></td>
-    </tr>
-</table>
-<br>
-<br>
-<br>
-<center><button id="submit" value="Save and Submit" ng-click="saveUploadedDetails()">Save and Submit</button></center>
+            <tr>
+                <td><strong> Document Name: </strong></td>
+                <td><input type="text" name = "docname" id="docname" placeholder="Enter your document name"></td>
+            </tr>
+            <tr>
+                <td><strong> Document Year: </strong></td>
+                <td><input type="text" name = "docyear" id="docyear" placeholder="Enter your document name"></td>
+            </tr>
+            <tr>
+                <td><strong> Comments: </strong></td>
+                <td><input type="text" name = "justification" id="justification" placeholder="Enter the justification after uploading document"></td>
+            </tr>
+            <tr>
+                <td><strong> HLC Category: </strong></td>
+                <td><input type="text" name = "hlc" id="hlc" placeholder="Enter the HLC Category"></td>
+            </tr>
+            <tr>
+                <td><strong> Comments: </strong></td>
+                <td><input type="text" name = "submitter" id="submitter" placeholder="Enter the submitter name"></td>
+            </tr>
+            <tr>
+                <td><strong> Upload Files:</strong></td>
+                <td><input type="file" name = "uploadfile" id="uploadfile" value="Upload File"></td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <br>
+        <center><button id="submit" value="Save and Submit" ng-click="saveUploadedDetails()">Save and Submit</button></center>
 
+    </form>
 
 </body>
 
