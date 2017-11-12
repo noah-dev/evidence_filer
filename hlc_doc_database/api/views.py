@@ -1,4 +1,9 @@
-from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect, Http404
+from django.views.static import serve
+
+from django.conf import settings
+from django.http import HttpResponse
+
 from .models import DocMetadata
 import os
 
@@ -34,9 +39,9 @@ def upload(request):
         save_file_name = doc_dept + "_" + file_name + "_" + doc_year + file_ext
         file_dest = os.path.join(FILES_FOLDER, doc_hlc + "/" + save_file_name)
 
-        with open(file_dest, 'wb+') as dest:
+        with open(file_dest, 'wb+') as dst:
             for chunk in file.chunks():
-                dest.write(chunk)
+                dst.write(chunk)
 
         doc_id = doc_hlc + "_" + save_file_name
         # Could be refactored to use django forms
@@ -51,3 +56,35 @@ def upload(request):
         new_doc.save()
                 
     return HttpResponseRedirect("/aaw/upload")
+def retrival(request):
+    return HttpResponse("Hello")
+
+# https://stackoverflow.com/questions/36392510/django-download-a-file
+def serve_file(request):
+    #file_path = os.path.join(settings.MEDIA_ROOT, path)
+    file_path = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_p_2016.pptx'
+    #file_path = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_w.pdf_2014.pdf'
+    hlc_file_name = "cr1/CS_p_2016.pptx"
+    
+    try:
+        hlc = request.GET['hlc']
+        file_name = request.GET['file_name']
+        hlc_file_name = hlc + "/" + file_name
+    except:
+        hlc_file_name = "cr1/CS_p_2016.pptx"
+
+    file_path = os.path.join(FILES_FOLDER, hlc_file_name)
+
+    with open(file_path, 'rb') as src:
+        response = HttpResponse(src.read(), content_type="application/octet-stream")
+        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+        return response
+    raise Http404
+
+# This sorta worked, but the file names would not show
+# https://stackoverflow.com/questions/1156246/having-django-serve-downloadable-files
+def serve_file_old(request):
+    # filepath = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_w.pdf_2014.pdf'
+    filepath = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_p_2016.pptx'
+    print(filepath)
+    return serve(request, os.path.basename(filepath), os.path.dirname(filepath))
