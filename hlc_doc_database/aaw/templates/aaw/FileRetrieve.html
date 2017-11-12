@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Retrieve from JSON</title>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //Sample Json data
+            var jsondata = [
+                {
+                    "id": 3,
+                    "doc_id": "cr1_CS_w_2014.pdf",
+                    "doc_dept": "CS",
+                    "doc_year": "2014",
+                    "doc_name": "CS_w_2014.pdf",
+                    "hlc_cat": "cr1",
+                    "hlc_cmpt": "_",
+                    "justification": "_",
+                    "submitter": "blank@localhost.local",
+                    "upload_time": 0,
+                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
+                },
+                {
+                    "id": 4,
+                    "doc_id":
+                        "cr2_CS_w_2015.docx",
+                    "doc_dept": "CS",
+                    "doc_year": "2015",
+                    "doc_name": "CS_w_2015.docx",
+                    "hlc_cat": "cr2",
+                    "hlc_cmpt": "_",
+                    "justification": "_",
+                    "submitter": "blank@localhost.local",
+                    "upload_time": 0,
+                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
+                },
+                {
+                    "id": 5,
+                    "doc_id": "cr1_EE_w_2015.docx",
+                    "doc_dept": "EE",
+                    "doc_year": "2015",
+                    "doc_name": "EE_w_2015.docx",
+                    "hlc_cat": "cr1",
+                    "hlc_cmpt": "_",
+                    "justification": "_",
+                    "submitter": "blank@localhost.local",
+                    "upload_time": 0,
+                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
+                },
+                {
+                    "id": 6,
+                    "doc_id": "cr3_COMM_p_2013.pptx",
+                    "doc_dept": "COMM",
+                    "doc_year": "2013",
+                    "doc_name": "COMM_p_2013.pptx",
+                    "hlc_cat": "cr3",
+                    "hlc_cmpt": "_",
+                    "justification": "_",
+                    "submitter": "blank@localhost.local",
+                    "upload_time": 0,
+                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
+                },
+                {
+                    "id": 7,
+                    "doc_id": "cr1_EE_p_2013.pptx",
+                    "doc_dept": "EE",
+                    "doc_year": "2013",
+                    "doc_name": "EE_p_2013.pptx",
+                    "hlc_cat": "cr1",
+                    "hlc_cmpt": "_",
+                    "justification": "_",
+                    "submitter": "blank@localhost.local",
+                    "upload_time": 0,
+                    "file_link":"http://static.usenix.org/events/fast12/tech/slides/Sumbaly.pdf"
+                }];
+            $('#table').bootstrapTable({
+                //Assigning data to table
+                data: jsondata
+            });
+        });
+        function LinkFormatter(value, row, index) {
+            return "<a href='"+value+"'>"+value+"</a>";
+        }
+    </script>
+</head>
+<body>
+<center>
+    <strong>Filter by Category</strong>
+<select id="hlc" onchange="filterByHLC()">
+    <option value="cr1">cr1</option>
+    <option value="cr2">cr2</option>
+    <option value="cr3">cr3</option>
+    <option value="cr4">cr4</option>
+</select>
+<form id="form1">
+    <table id="table">
+        <thead>
+        <tr>
+            <th data-field="id">ID</th>
+            <th data-field="doc_id">Doc ID</th>
+            <th data-field="doc_dept">Department Name</th>
+            <th data-field="doc_year">Year</th>
+            <th data-field="doc_name">Document Name</th>
+            <th data-field="hlc_cat">HLC Category</th>
+            <th data-field="hlc_cmpt">Complete HLC</th>
+            <th data-field="justification">Justification</th>
+            <th data-field="submitter">Submitter</th>
+            <th data-field="upload_time">Time Stamp</th>
+            <th data-field="file_link" data-formatter="LinkFormatter">Download File</th>
+
+        </tr>
+        </thead>
+    </table>
+</form>
+</center>
+</body>
+<script>
+    function filterByHLC() {
+        var hlccategory,filter,table,tr,td;
+        hlccategory = document.getElementById("hlc");
+        filter = hlccategory.value.toLowerCase();
+        console.log("hie");
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        td = table.getElementsByTagName("td");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            console.log(td);
+            if (td) {
+                console.log("enter heading loop")
+
+                if (td.innerHTML.indexOf(filter) > -1) {
+                    console.log("enter rows loop")
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+</html>
