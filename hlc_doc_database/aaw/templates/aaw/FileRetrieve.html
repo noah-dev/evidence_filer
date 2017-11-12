@@ -11,76 +11,6 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            //Sample Json data
-            /*
-            var jsondata = [
-                {
-                    "id": 3,
-                    "doc_id": "cr1_CS_w_2014.pdf",
-                    "doc_dept": "CS",
-                    "doc_year": "2014",
-                    "doc_name": "CS_w_2014.pdf",
-                    "hlc_cat": "cr1",
-                    "hlc_cmpt": "_",
-                    "justification": "_",
-                    "submitter": "blank@localhost.local",
-                    "upload_time": 0,
-                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
-                },
-                {
-                    "id": 4,
-                    "doc_id":
-                        "cr2_CS_w_2015.docx",
-                    "doc_dept": "CS",
-                    "doc_year": "2015",
-                    "doc_name": "CS_w_2015.docx",
-                    "hlc_cat": "cr2",
-                    "hlc_cmpt": "_",
-                    "justification": "_",
-                    "submitter": "blank@localhost.local",
-                    "upload_time": 0,
-                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
-                },
-                {
-                    "id": 5,
-                    "doc_id": "cr1_EE_w_2015.docx",
-                    "doc_dept": "EE",
-                    "doc_year": "2015",
-                    "doc_name": "EE_w_2015.docx",
-                    "hlc_cat": "cr1",
-                    "hlc_cmpt": "_",
-                    "justification": "_",
-                    "submitter": "blank@localhost.local",
-                    "upload_time": 0,
-                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
-                },
-                {
-                    "id": 6,
-                    "doc_id": "cr3_COMM_p_2013.pptx",
-                    "doc_dept": "COMM",
-                    "doc_year": "2013",
-                    "doc_name": "COMM_p_2013.pptx",
-                    "hlc_cat": "cr3",
-                    "hlc_cmpt": "_",
-                    "justification": "_",
-                    "submitter": "blank@localhost.local",
-                    "upload_time": 0,
-                    "file_link":"/api/serve?&hlc=cr2&file_name=CS_w_2015.docx"
-                },
-                {
-                    "id": 7,
-                    "doc_id": "cr1_EE_p_2013.pptx",
-                    "doc_dept": "EE",
-                    "doc_year": "2013",
-                    "doc_name": "EE_p_2013.pptx",
-                    "hlc_cat": "cr1",
-                    "hlc_cmpt": "_",
-                    "justification": "_",
-                    "submitter": "blank@localhost.local",
-                    "upload_time": 0,
-                    "file_link":"http://static.usenix.org/events/fast12/tech/slides/Sumbaly.pdf"
-                }];*/
-            
             $.ajax({
                 dataType: "json",
                 url: "/api/retrival",
@@ -99,11 +29,6 @@
                     });
                 }
             });
-            /*
-            $('#table').bootstrapTable({
-                //Assigning data to table
-                data: jsondata
-            });*/
         });
         function LinkFormatter(value, row, index) {
             return "<a href='"+value+"'>"+"Click Here to Download"+"</a>";
@@ -113,14 +38,14 @@
 <body>
 <center>
     <strong>Filter by Category</strong>
-<select id="hlc" onchange="filterByHLC()">
-    <option value="" selected="selected"></option>
-    <option value="cr1">cr1</option>
-    <option value="cr2">cr2</option>
-    <option value="cr3">cr3</option>
-    <option value="cr4">cr4</option>
-    <option value="cr5">cr5</option>
-</select>
+    <select id="hlc" onchange="filterByHLC()">
+        <option value="" selected="selected"></option>
+        <option value="cr1">cr1</option>
+        <option value="cr2">cr2</option>
+        <option value="cr3">cr3</option>
+        <option value="cr4">cr4</option>
+        <option value="cr5">cr5</option>
+    </select>
     <strong>Filter by Department</strong>
     <select id="dept" onchange="filterByHLC()">
         <option value="" selected="selected"></option>
@@ -128,7 +53,17 @@
         <option value="EE">Electrical Engineering</option>
         <option value="COMM">Communication Engineering</option>
         <option value="NW">Networking</option>
+    </select>
 
+    <strong>Filter by Year</strong>
+    <select id="year" onchange="filterByHLC()">
+        <option value="" selected="selected"></option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
     </select>
 <form id="form1">
     <table id="table">
@@ -154,36 +89,27 @@
 </body>
 <script>
     function filterByHLC() {
-        var deptname,hlccategory,filter,filter1,table,tr,td;
+        var filterYear, deptname,hlccategory,filter,filter1,table,tr,td;
         hlccategory = document.getElementById("hlc");
         filter = hlccategory.value.toLowerCase();
         deptname = document.getElementById("dept");
         filter1 = deptname.value.toUpperCase();
 
+        filterYear = document.getElementById("year").value;
         table = document.getElementById("table");
         tr = table.getElementsByTagName("tr");
         td = table.getElementsByTagName("td");
 
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[5];
-            console.log(td);
-            if (td) {
-                if (td.innerHTML.indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-        console.log(filter1)
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            console.log(td);
-            if (td) {
-                console.log("enter heading loop")
+        for (i = 1; i < tr.length; i++) {
 
-                if (td.innerHTML.indexOf(filter1) > -1) {
-                    console.log("enter rows loop")
+            dept_row = tr[i].getElementsByTagName("td")[2];
+            year_row = tr[i].getElementsByTagName("td")[3];
+            hlc_row = tr[i].getElementsByTagName("td")[5];
+
+            if (dept_row && year_row && hlc_row ) {
+                if (dept_row.innerHTML.indexOf(filter1) > -1 &&  
+                    hlc_row.innerHTML.indexOf(filter) > -1 && 
+                    year_row.innerHTML.indexOf(filterYear) > -1)  {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
