@@ -8,7 +8,7 @@ def upload(request):
     return render(request, 'aaw/HomePage.html')
 
 def retrival(request):
-    return render(request, 'aaw/retrival.html')
+    return render(request, 'aaw/FileRetrieve.html')
 
 def taxonomy(request):
     return render(request, 'aaw/taxonomy.html')

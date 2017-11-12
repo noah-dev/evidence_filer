@@ -12,6 +12,7 @@
 
         $(document).ready(function () {
             //Sample Json data
+            /*
             var jsondata = [
                 {
                     "id": 3,
@@ -78,14 +79,34 @@
                     "submitter": "blank@localhost.local",
                     "upload_time": 0,
                     "file_link":"http://static.usenix.org/events/fast12/tech/slides/Sumbaly.pdf"
-                }];
+                }];*/
+            
+            $.ajax({
+                dataType: "json",
+                url: "/api/retrival",
+                data: "",
+                success: function (data) {
+                    // Data needs a new field: file_link
+                    for(var i = 0; i < data.length; i ++){
+                        record = data[i];
+                        record.file_link = "/api/serve/?hlc="+record.hlc_cat+"&file_name="+record.doc_name;
+                    }
+
+                    jsondata = data;
+                    $('#table').bootstrapTable({
+                        //Assigning data to table
+                        data: jsondata
+                    });
+                }
+            });
+            /*
             $('#table').bootstrapTable({
                 //Assigning data to table
                 data: jsondata
-            });
+            });*/
         });
         function LinkFormatter(value, row, index) {
-            return "<a href='"+value+"'>"+value+"</a>";
+            return "<a href='"+value+"'>"+"Click Here to Download"+"</a>";
         }
     </script>
 </head>
@@ -93,10 +114,12 @@
 <center>
     <strong>Filter by Category</strong>
 <select id="hlc" onchange="filterByHLC()">
+    <option value="" selected="selected"></option>
     <option value="cr1">cr1</option>
     <option value="cr2">cr2</option>
     <option value="cr3">cr3</option>
     <option value="cr4">cr4</option>
+    <option value="cr5">cr5</option>
 </select>
 <form id="form1">
     <table id="table">
