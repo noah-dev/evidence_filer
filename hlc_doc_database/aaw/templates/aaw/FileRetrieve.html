@@ -175,13 +175,14 @@
                 }
             }
         }
+        console.log(filter1)
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[2];
             console.log(td);
             if (td) {
                 console.log("enter heading loop")
 
-                if (td.innerHTML.indexOf(filter) > -1) {
+                if (td.innerHTML.indexOf(filter1) > -1) {
                     console.log("enter rows loop")
                     tr[i].style.display = "";
                 } else {
