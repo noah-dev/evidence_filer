@@ -63,12 +63,7 @@ def retrival(request):
 # https://stackoverflow.com/questions/36392510/django-download-a-file
 from django.views.static import serve
 from django.conf import settings
-def serve_file(request):
-    #file_path = os.path.join(settings.MEDIA_ROOT, path)
-    file_path = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_p_2016.pptx'
-    #file_path = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_w.pdf_2014.pdf'
-    hlc_file_name = "cr1/CS_p_2016.pptx"
-    
+def serve_file(request):    
     try:
         hlc = request.GET['hlc']
         file_name = request.GET['file_name']

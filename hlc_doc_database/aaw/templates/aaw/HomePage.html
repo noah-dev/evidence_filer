@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>assert Almost True</title>
+
+    <link rel="stylesheet" href="{% static 'aaw/style/index.css' %}">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-    <!--
-        <script type="text/javascript" src="..\JS\saveUploadedDetails.js"></script>
-    -->
     <script type="text/javascript" src="{% static 'aaw/js/saveUploadedDetails.js' %}"></script>
 </head>
 <body ng-controller="uploadfile">
+    
+    <h1 align="absolute" class="title_heading">UMKC DOCUMENT RETRIEVAL</h1>
 
     <form action="/api/upload/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -27,7 +29,7 @@
                         <option value="CS">Computer Science</option>
                         <option value="EE">Electrical Engineering</option>
                         <option value="COMM">Communication Engineering</option>
-                        <option value="N/W">Networking</option>
+                        <option value="NW">Networking</option>
                     </select>
                 </td>
             </tr>
@@ -49,8 +51,8 @@
                 <td><input type="text" name = "hlc" id="hlc" placeholder="Enter the HLC Category"></td>
             </tr>
             <tr>
-                <td><strong> Comments: </strong></td>
-                <td><input type="text" name = "submitter" id="submitter" placeholder="Enter the submitter name"></td>
+                <td><strong> Submitter's Email: </strong></td>
+                <td><input type="email" name = "submitter" id="submitter" placeholder="Enter the submitter's meail"></td>
             </tr>
             <tr>
                 <td><strong> Upload Files:</strong></td>
