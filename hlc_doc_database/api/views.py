@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .models import DocMetadata
 
-import os, json, datetime
+import os, json, datetime, collections
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES_FOLDER = os.path.join(BASE_DIR, "files/")
@@ -57,7 +57,8 @@ def upload(request):
     return HttpResponseRedirect("/aaw/upload")
 def retrival(request):
     hlc_category = "cr1"
-    docs = DocMetadata.objects.filter(hlc_cat=hlc_category).values()
+    # docs = DocMetadata.objects.filter(hlc_cat=hlc_category).values()
+    docs = DocMetadata.objects.values()
     return JsonResponse(list(docs), safe=False)
 
 # https://stackoverflow.com/questions/36392510/django-download-a-file
@@ -79,10 +80,28 @@ def serve_file(request):
         return response
     raise Http404
 
-# This sorta worked, but the file names would not show
-# https://stackoverflow.com/questions/1156246/having-django-serve-downloadable-files
-def serve_file_old(request):
-    # filepath = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_w.pdf_2014.pdf'
-    filepath = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_p_2016.pptx'
-    print(filepath)
-    return serve(request, os.path.basename(filepath), os.path.dirname(filepath))
+#
+def taxonomy(request):
+    docs =  list(DocMetadata.objects.values())
+    # by_year = list(docs.values('doc_year'))
+    # by_dept = list(docs.values('doc_dept'))
+    # by_hlc = list(docs.values('hlc_cat'))
+
+    by_year, by_dept, by_hlc = {}, {}, {}
+
+    # https://stackoverflow.com/questions/3496518/python-using-a-dictionary-to-count-the-items-in-a-list
+    for doc in docs:
+        for key in doc:
+            if key == "doc_year":
+                year = doc[key]
+                by_year[year] = by_year.get(year, 0) + 1
+            if key == "doc_dept":
+                dept = doc[key]
+                by_dept[dept] = by_dept.get(dept, 0) + 1
+            if key == "hlc_cat":
+                hlc_cat = doc[key]
+                by_hlc[hlc_cat] = by_hlc.get(hlc_cat, 0) + 1
+
+    counts = {"by_year": by_year, "by_dept": by_dept, "by_hlc": by_hlc}
+    
+    return JsonResponse(counts, safe=False)

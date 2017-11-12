@@ -1,12 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="FileDetails">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>UMKC Hackathon</title>
+
+    <link rel="stylesheet" href="{% static 'aaw/style/index.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script type="text/javascript" src="{% static 'aaw/js/retrival.js' %}"></script>
 </head>
 <body>
+    <h1 align="absolute" class="title_heading">UMKC DOCUMENT RETRIEVAL</h1>
     <a href="/api/serve?&hlc=cr2&file_name=CS_w_2015.docx">Download File</a>
 </body>
+
 </html>

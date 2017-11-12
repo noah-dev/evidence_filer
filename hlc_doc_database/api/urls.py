@@ -6,5 +6,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^upload/$', views.upload, name='upload'),
     url(r'^retrival/$', views.retrival, name='retrival'),
-    url(r'^serve/$', views.serve_file, name='serve')
+    url(r'^serve/$', views.serve_file, name='serve'),
+    url(r'^taxonomy/$', views.taxonomy, name='taxonomy')
 ]
