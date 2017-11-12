@@ -1,12 +1,10 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, Http404
-from django.views.static import serve
-
-from django.conf import settings
+from django.http import JsonResponse
 from django.http import HttpResponse
 
 from .models import DocMetadata
-import os
 
+import os, json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES_FOLDER = os.path.join(BASE_DIR, "files/")
@@ -57,9 +55,19 @@ def upload(request):
                 
     return HttpResponseRedirect("/aaw/upload")
 def retrival(request):
-    return HttpResponse("Hello")
+    hlc_category = "cr1"
+    docs = DocMetadata.objects.filter(hlc_cat=hlc_category).values()
+    json_docs = json.dumps(list(docs))
+    return JsonResponse({"a":"Hi there"}, safe=False)
+
+def datetime_handler(x):
+    if isinstance(x, datetime.datetime):
+        return x.isoformat()
+    raise TypeError("Unknown type")
 
 # https://stackoverflow.com/questions/36392510/django-download-a-file
+from django.views.static import serve
+from django.conf import settings
 def serve_file(request):
     #file_path = os.path.join(settings.MEDIA_ROOT, path)
     file_path = 'C:/apps/projects/UMKCFS2017_Hackathon/hlc_doc_database/files/cr1/CS_p_2016.pptx'
@@ -72,7 +80,7 @@ def serve_file(request):
         hlc_file_name = hlc + "/" + file_name
     except:
         hlc_file_name = "cr1/CS_p_2016.pptx"
-
+        
     file_path = os.path.join(FILES_FOLDER, hlc_file_name)
 
     with open(file_path, 'rb') as src:

@@ -9,7 +9,7 @@ class DocMetadata(models.Model):
     hlc_cmpt = models.TextField()
     justification = models.TextField()
     submitter = models.EmailField()
-    upload_date = models.DateTimeField(auto_now_add=True)
+    upload_date = models.BigIntegerField()
 
     def __repr__(self):
         return self.doc_id
