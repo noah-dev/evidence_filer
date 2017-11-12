@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .models import DocMetadata
 
-import os, json
+import os, json, datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES_FOLDER = os.path.join(BASE_DIR, "files/")
@@ -48,22 +48,17 @@ def upload(request):
                                 doc_year = doc_year,
                                 doc_name = save_file_name,
                                 hlc_cat = doc_hlc,
-                                hlc_cmpt = "",
-                                justification = "",
-                                submitter = "blank@localhost.local")
+                                hlc_cmpt = "_",
+                                justification = "_",
+                                submitter = "blank@localhost.local",
+                                upload_time = 0)
         new_doc.save()
                 
     return HttpResponseRedirect("/aaw/upload")
 def retrival(request):
     hlc_category = "cr1"
     docs = DocMetadata.objects.filter(hlc_cat=hlc_category).values()
-    json_docs = json.dumps(list(docs))
-    return JsonResponse({"a":"Hi there"}, safe=False)
-
-def datetime_handler(x):
-    if isinstance(x, datetime.datetime):
-        return x.isoformat()
-    raise TypeError("Unknown type")
+    return JsonResponse(list(docs), safe=False)
 
 # https://stackoverflow.com/questions/36392510/django-download-a-file
 from django.views.static import serve
