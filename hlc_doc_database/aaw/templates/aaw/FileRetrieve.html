@@ -121,6 +121,15 @@
     <option value="cr4">cr4</option>
     <option value="cr5">cr5</option>
 </select>
+    <strong>Filter by Department</strong>
+    <select id="dept" onchange="filterByHLC()">
+        <option value="" selected="selected"></option>
+        <option value="CS">Computer Science</option>
+        <option value="EE">Electrical Engineering</option>
+        <option value="COMM">Communication Engineering</option>
+        <option value="NW">Networking</option>
+
+    </select>
 <form id="form1">
     <table id="table">
         <thead>
@@ -145,16 +154,29 @@
 </body>
 <script>
     function filterByHLC() {
-        var hlccategory,filter,table,tr,td;
+        var deptname,hlccategory,filter,filter1,table,tr,td;
         hlccategory = document.getElementById("hlc");
         filter = hlccategory.value.toLowerCase();
-        console.log("hie");
+        deptname = document.getElementById("dept");
+        filter1 = deptname.value.toUpperCase();
+
         table = document.getElementById("table");
         tr = table.getElementsByTagName("tr");
         td = table.getElementsByTagName("td");
 
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[5];
+            console.log(td);
+            if (td) {
+                if (td.innerHTML.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
             console.log(td);
             if (td) {
                 console.log("enter heading loop")
@@ -168,5 +190,6 @@
             }
         }
     }
+
 </script>
 </html>
