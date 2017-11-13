@@ -61,17 +61,21 @@ def retrival(request):
     return JsonResponse(list(docs), safe=False)
 
 # https://stackoverflow.com/questions/36392510/django-download-a-file
-from django.views.static import serve
-from django.conf import settings
 def serve_file(request):    
     try:
         hlc = request.GET['hlc']
         file_name = request.GET['file_name']
+
+        if "\\" in hlc+file_name or "/" in hlc+file_name:
+            raise ValueError
+
         hlc_file_name = hlc + "/" + file_name
+
     except:
         raise Http404
         
     file_path = os.path.join(FILES_FOLDER, hlc_file_name)
+    print(file_path)
 
     with open(file_path, 'rb') as src:
         response = HttpResponse(src.read(), content_type="application/octet-stream")
