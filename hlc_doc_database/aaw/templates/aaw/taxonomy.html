@@ -44,14 +44,14 @@
                         md-colors="{background: 'amber'}"
                         md-ink-ripple flex>
                         <md-card-title-text>
-                        <span class="md-headline md-primary">Count By Dept</span>
+                        <span class="md-headline md-primary">Count By Department</span>
                         </md-card-title-text>
                         </md-content>
                     </md-card-title>
                 <md-card-content>
                     <md-list-item class="md-3-line" ng-repeat="item in sc.by_dept" ng-click="null">
                         <div class="md-list-item-text" layout="column">
-                            <h2>Year: {{ item.year }}</h2>
+                            <h2>Department: {{ item.year }}</h2>
                             <h3>Number Uploaded: {{ item.count }}</h3>
                             <br>
                         </div>
@@ -73,7 +73,7 @@
                 <md-card-content>
                     <md-list-item class="md-3-line" ng-repeat="item in sc.by_hlc" ng-click="null">
                         <div class="md-list-item-text" layout="column">
-                            <h2>Year: {{ item.year }}</h2>
+                            <h2>HLC: {{ item.year }}</h2>
                             <h3>Number Uploaded: {{ item.count }}</h3>
                             <br>
                         </div>
