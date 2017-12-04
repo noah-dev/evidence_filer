@@ -1,0 +1,72 @@
+
+<md-toolbar class="md-toolbar-tools md-hue-2" id = "toolbar">
+    Taxonomy & Stats
+</md-toolbar>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="33" layout="column">
+        <md-card>
+            <md-card-title>
+                <md-content class="md-padding" 
+                    md-colors="{background: 'amber'}"
+                    md-ink-ripple flex>
+                    <md-card-title-text>
+                    <span class="md-headline md-primary">Count By Year</span>
+                    </md-card-title-text>
+                    </md-content>
+                </md-card-title>
+            <md-card-content>
+                <md-list-item class="md-3-line" ng-repeat="item in tc.by_year" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h2>Year: {{ item.year }}</h2>
+                        <h3>Number Uploaded: {{ item.count }}</h3>
+                        <br>
+                    </div>
+                </md-list-item>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="33" layout="column">
+        <md-card>
+            <md-card-title>
+                <md-content class="md-padding" 
+                    md-colors="{background: 'amber'}"
+                    md-ink-ripple flex>
+                    <md-card-title-text>
+                    <span class="md-headline md-primary">Count By Department</span>
+                    </md-card-title-text>
+                    </md-content>
+                </md-card-title>
+            <md-card-content>
+                <md-list-item class="md-3-line" ng-repeat="item in tc.by_dept" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h2>Department: {{ item.year }}</h2>
+                        <h3>Number Uploaded: {{ item.count }}</h3>
+                        <br>
+                    </div>
+                </md-list-item>
+            </md-card-content>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="33" layout="column">
+        <md-card>
+            <md-card-title>
+                <md-content class="md-padding" 
+                    md-colors="{background: 'amber'}"
+                    md-ink-ripple flex>
+                    <md-card-title-text>
+                    <span class="md-headline md-primary">Count By HLC</span>
+                    </md-card-title-text>
+                    </md-content>
+                </md-card-title>
+            <md-card-content>
+                <md-list-item class="md-3-line" ng-repeat="item in tc.by_hlc" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <h2>HLC: {{ item.year }}</h2>
+                        <h3>Number Uploaded: {{ item.count }}</h3>
+                        <br>
+                    </div>
+                </md-list-item>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>

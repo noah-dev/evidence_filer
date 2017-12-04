@@ -5,10 +5,10 @@ def index(request):
     return render(request, 'aaw/index.html')
 
 def upload(request):
-    return render(request, 'aaw/HomePage.html')
+    return render(request, 'aaw/index.html')
 
 def retrival(request):
-    return render(request, 'aaw/FileRetrieve.html')
+    return render(request, 'aaw/index.html')
 
 def taxonomy(request):
-    return render(request, 'aaw/taxonomy.html')
+    return render(request, 'aaw/index.html')

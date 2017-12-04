@@ -1,0 +1,10 @@
+<md-toolbar class = "md-toolbar-tools md-hue-2"><h1><b>Upload File</b></h1></md-toolbar>
+
+<md-content class="md-padding">
+    <h1>Please select a file to upload</h1>
+    <input type="file" name="file" id="file" ng-file="uc.getFile($file)">
+    <md-button ng-click="uc.uploadFiles()" ng-disabled="!uc.fileReady" class="md-raised md-accent md-hue-2">Upload</md-button>
+    <md-progress-circular ng-show="uc.loading" md-diameter="96"></md-progress-circular>
+    <br>
+    <br>
+</md-content>

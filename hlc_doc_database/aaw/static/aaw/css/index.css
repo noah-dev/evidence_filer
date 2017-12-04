@@ -1,0 +1,10 @@
+.click-able:hover{
+    cursor: pointer
+}
+.side-nav-icon{
+    fill: #4CAF50
+}
+
+a {
+    color: #4CAF50;
+}

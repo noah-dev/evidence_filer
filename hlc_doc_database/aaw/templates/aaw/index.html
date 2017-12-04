@@ -1,90 +1,95 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
 <head>
-    <meta charset="UTF-8">
-    <title>UMKC Hackathon</title>
+  <title>PITCH Dashboard</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+  <base href="/">
 
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.css">
-    <link rel="stylesheet" href="{% static 'aaw/style/index.css' %}">
+  <!-- Static assets -->
+  <link rel="stylesheet" type="text/css" href="{% static 'aaw/bower_components/angular-material/angular-material.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'aaw/css/index.css' %}" />
+
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+  
 </head>
 
-<body ng-app="indexApp" ng-cloak="">
-    {% verbatim %}
-    <md-toolbar class="md-toolbar-tools" id = "toolbar">
-        Argument Assurance Writer
-    </md-toolbar>
+<body ng-app="aaw" layout="column">
+  <section layout = "row" flex> 
+    <md-sidenav
+        class="md-sidenav-left md-whiteframe-6dp"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-xs')"
+        md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Evidence</h1>
+      </md-toolbar>
 
-    <md-content ng-controller="indexController as ic" class="md-padding" layout-xs="column" layout="row">
-        <div flex-xs flex-gt-xs="33" layout="column">
-            <md-card>
-                <md-card-title>
-                    <md-content class="md-padding" 
-                        md-colors="{background: 'amber'}"
-                        md-ink-ripple flex>
-                        <md-card-title-text>
-                        <span class="md-headline md-primary">Document Upload</span>
-                        </md-card-title-text>
-                    </md-content>
-                </md-card-title>
-                <md-card-content>
-                    <p>Click the button below to go to Document Upload</p>  
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button href="upload/"class="md-raised md-primary">Document Upload</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-        <div flex-xs flex-gt-xs="33" layout="column">
-            <md-card>
-                <md-card-title>
-                    <md-content class="md-padding" 
-                        md-colors="{background: 'amber'}"
-                        md-ink-ripple flex>
-                        <md-card-title-text>
-                        <span class="md-headline md-primary">Document Retrival</span>
-                        </md-card-title-text>
-                    </md-content>
-                </md-card-title>
-                <md-card-content>
-                    <p>Click the button below to go to document retrival</p>  
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button href="retrival/"class="md-raised md-primary">Document Retrival</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-        <div flex-xs flex-gt-xs="33" layout="column">
-            <md-card>
-                <md-card-title>
-                    <md-content class="md-padding" 
-                        md-colors="{background: 'amber'}"
-                        md-ink-ripple flex>
-                        <md-card-title-text>
-                        <span class="md-headline md-primary">Taxonomy & Stats</span>
-                        </md-card-title-text>
-                    </md-content>
-                </md-card-title>
-                <md-card-content>
-                    <p>Click the button below to go to taxonomy & stats</p>  
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button href="taxonomy/"class="md-raised md-primary">Taxonomy & Sats</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </md-content>
-    {% endverbatim %}
+      <md-content ng-controller="sideNavController as snc" class="click-able">
+          
+        <md-content ng-click="snc.navigate('/aaw/')">
+            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                <div class="inset">
+                <ng-md-icon class="side-nav-icon" icon="file_upload"></ng-md-icon>
+                </div>
+                <div class="inset">Upload New File</div>
+            </md-item-content>
+        </md-content>
 
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-aria.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-messages.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
-    <script type="text/javascript" src="{% static 'aaw/js/index.js' %}"></script>
+        <md-content ng-click="snc.navigate('/aaw/taxonomy')">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon class="side-nav-icon" icon="dashboard"></ng-md-icon>
+            </div>
+            <div class="inset">Taxonomy</div>
+          </md-item-content>
+        </md-content>
+
+        <md-content ng-click="snc.navigate('/aaw/retrival/')">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon class="side-nav-icon" icon="view_list"></ng-md-icon>
+            </div>
+            <div class="inset">Retrival</div>
+          </md-item-content>
+        </md-content>
+
+      </md-content>
+
+    </md-sidenav>
+
+    <div layout="column" flex>
+        <div class="{{ pageClass }}" ng-view></div>
+    </div>
+  </section>
+  <!--JS files -->
+
+  <script src="{% static 'aaw/bower_components/angular/angular.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-route/angular-route.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-animate/angular-animate.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-aria/angular-aria.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-messages/angular-messages.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-material/angular-material.min.js' %}"></script>
+  <script src="{% static 'aaw/bower_components/angular-material-icons/angular-material-icons.min.js' %}"></script>
+
+  <script>
+    function LinkFormatter(value, row, index) {
+        return "<a target=_blank  href='"+value+"'>"+"Click Here to Download"+"</a>";
+    }
+    </script>
+
+  <script src="{% static 'aaw/js/app.js' %}"></script>
+  <script src="{% static 'aaw/js/controllers/sidenav.js' %}"></script>
+  <script src="{% static 'aaw/js/controllers/upload.js' %}"></script>
+  <script src="{% static 'aaw/js/controllers/taxonomy.js' %}"></script>
+  <script src="{% static 'aaw/js/controllers/retrival.js' %}"></script>
+  
+
 </body>
-
 </html>
