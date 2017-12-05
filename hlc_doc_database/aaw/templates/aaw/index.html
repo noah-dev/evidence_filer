@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE HTML>
 <head>
-  <title>PITCH Dashboard</title>
+  <title>Evidence Repository (Prototype)</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
@@ -28,13 +28,13 @@
         md-is-locked-open="$mdMedia('gt-xs')"
         md-whiteframe="4">
       <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Evidence</h1>
+        <h1 class="md-toolbar-tools">Pages</h1>
       </md-toolbar>
 
       <md-content ng-controller="sideNavController as snc" class="click-able">
         <md-divider></md-divider>
         <md-content ng-click="snc.navigate(0,'/aaw/')"
-          md-colors="snc.selected[0] ? {background: 'orange-800'} : {background: 'default'}">
+          md-colors="snc.selected[0] ? {background: 'yellow-800'} : {background: 'default'}">
             <md-item-content md-ink-ripple layout="row" layout-align="start center">
                 <div class="inset">
                 <ng-md-icon class="side-nav-icon" icon="file_upload"></ng-md-icon>
@@ -44,7 +44,7 @@
         </md-content>
         <md-divider></md-divider>
         <md-content ng-click="snc.navigate(1,'/aaw/taxonomy')"
-          md-colors="snc.selected[1] ? {background: 'orange-800'} : {background: 'default'}">
+          md-colors="snc.selected[1] ? {background: 'yellow-800'} : {background: 'default'}">
           <md-item-content md-ink-ripple layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon class="side-nav-icon" icon="dashboard"></ng-md-icon>
@@ -54,7 +54,7 @@
         </md-content>
         <md-divider></md-divider>
         <md-content ng-click="snc.navigate(2,'/aaw/retrival/')"
-          md-colors="snc.selected[2] ? {background: 'orange-800'} : {background: 'default'}">
+          md-colors="snc.selected[2] ? {background: 'yellow-800'} : {background: 'default'}">
           <md-item-content md-ink-ripple layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon class="side-nav-icon" icon="view_list"></ng-md-icon>
