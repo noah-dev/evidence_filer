@@ -1,10 +1,57 @@
 <md-toolbar class = "md-toolbar-tools md-hue-2"><h1><b>Upload File</b></h1></md-toolbar>
 
-<md-content class="md-padding">
-    <h1>Please select a file to upload</h1>
-    <input type="file" name="file" id="file" ng-file="uc.getFile($file)">
-    <md-button ng-click="uc.uploadFiles()" ng-disabled="!uc.fileReady" class="md-raised md-accent md-hue-2">Upload</md-button>
-    <md-progress-circular ng-show="uc.loading" md-diameter="96"></md-progress-circular>
-    <br>
-    <br>
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <md-card flex>
+        <md-card-content>
+            <form name="documentForm" action="/api/upload/" method="post" enctype="multipart/form-data">
+                <md-input-container class="md-block">
+                    <label>Department</label>
+                    <md-select required id="deptname" name="deptname" ng-model="uc.deptname">
+                        <md-option value="CS">Computer Science</md-option>
+                        <md-option value="EE">Electrical Engineering</md-option>
+                        <md-option value="COMM">Communication Engineering</md-option>
+                        <md-option value="NW">Networking</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Document Name</label>
+                    <input required type="text" name = "docname" id="docname">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Document Year</label>
+                    <input required type="number" name = "docyear" id="docyear">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Justification</label>
+                    <textarea required type="text" name = "justification" id="justification"></textarea>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Criterion</label>
+                    <md-select required id="hlc" name="hlc" ng-model="uc.hlc">
+                        <md-option value="cr1">Criterion 1</md-option>
+                        <md-option value="cr2">Criterion 2</md-option>
+                        <md-option value="cr3">Criterion 3</md-option>
+                        <md-option value="cr4">Criterion 4</md-option>
+                        <md-option value="cr5">Criterion 5</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                    <label>Submitter's Email</label>
+                    <input required type="email" name = "submitter" id="submitter">
+                </md-input-container>
+
+                <input required type="file" name = "uploadfile" id="uploadfile" value="Upload File">
+                <br>
+                <br>
+                <md-button class = "md-raised md-accent md-hue-3" type="submit">
+                    <h2>Upload Document</h2>
+                </md-button>
+            </form>
+        </md-card-content>
+    </md-card>
 </md-content>

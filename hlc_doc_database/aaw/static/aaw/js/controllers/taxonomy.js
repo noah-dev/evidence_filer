@@ -12,7 +12,6 @@ app.controller('taxonomyController', function ($http) {
     init()
     function init(){
         $http.get("/api/taxonomy/").then(res=>{
-            console.log(res.data)
             _this.populate(res.data);
         })
     }

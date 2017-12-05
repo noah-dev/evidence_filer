@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, Http404
 from django.http import JsonResponse
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import DocMetadata
 
@@ -12,7 +13,10 @@ FILES_FOLDER = os.path.join(BASE_DIR, "files/")
 # Create your views here.
 def index(request):
     return HttpResponse("Hello")
+
+@csrf_exempt
 def upload(request):
+    print(request.POST)
     if request.POST and request.FILES:
         # Get the text inputs
         doc_hlc = request.POST["hlc"]
@@ -54,9 +58,8 @@ def upload(request):
                                 upload_time = 0)
         new_doc.save()
                 
-    return HttpResponseRedirect("/aaw/upload")
+    return HttpResponseRedirect("/aaw")
 def retrival(request):
-    hlc_category = "cr1"
     docs = DocMetadata.objects.values()
     return JsonResponse(list(docs), safe=False)
 

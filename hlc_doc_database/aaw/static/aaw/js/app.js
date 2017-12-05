@@ -1,9 +1,10 @@
-var aawApp = angular.module('aaw', ['ngMaterial', 'ngRoute', 'ngAnimate', 'ngMdIcons']);
+var aawApp = angular.module('aaw', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngAnimate', 'ngMdIcons']);
 
 aawApp.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+	$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 }]);
+
 aawApp.config(function($routeProvider, $locationProvider, $mdThemingProvider) {
 	$routeProvider
 		.when('/aaw/', {

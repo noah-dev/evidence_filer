@@ -32,8 +32,9 @@
       </md-toolbar>
 
       <md-content ng-controller="sideNavController as snc" class="click-able">
-          
-        <md-content ng-click="snc.navigate('/aaw/')">
+        <md-divider></md-divider>
+        <md-content ng-click="snc.navigate(0,'/aaw/')"
+          md-colors="snc.selected[0] ? {background: 'orange-800'} : {background: 'default'}">
             <md-item-content md-ink-ripple layout="row" layout-align="start center">
                 <div class="inset">
                 <ng-md-icon class="side-nav-icon" icon="file_upload"></ng-md-icon>
@@ -41,8 +42,9 @@
                 <div class="inset">Upload New File</div>
             </md-item-content>
         </md-content>
-
-        <md-content ng-click="snc.navigate('/aaw/taxonomy')">
+        <md-divider></md-divider>
+        <md-content ng-click="snc.navigate(1,'/aaw/taxonomy')"
+          md-colors="snc.selected[1] ? {background: 'orange-800'} : {background: 'default'}">
           <md-item-content md-ink-ripple layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon class="side-nav-icon" icon="dashboard"></ng-md-icon>
@@ -50,8 +52,9 @@
             <div class="inset">Taxonomy</div>
           </md-item-content>
         </md-content>
-
-        <md-content ng-click="snc.navigate('/aaw/retrival/')">
+        <md-divider></md-divider>
+        <md-content ng-click="snc.navigate(2,'/aaw/retrival/')"
+          md-colors="snc.selected[2] ? {background: 'orange-800'} : {background: 'default'}">
           <md-item-content md-ink-ripple layout="row" layout-align="start center">
             <div class="inset">
               <ng-md-icon class="side-nav-icon" icon="view_list"></ng-md-icon>
@@ -59,6 +62,7 @@
             <div class="inset">Retrival</div>
           </md-item-content>
         </md-content>
+        <md-divider></md-divider>
 
       </md-content>
 
@@ -82,7 +86,7 @@
     function LinkFormatter(value, row, index) {
         return "<a target=_blank  href='"+value+"'>"+"Click Here to Download"+"</a>";
     }
-    </script>
+  </script>
 
   <script src="{% static 'aaw/js/app.js' %}"></script>
   <script src="{% static 'aaw/js/controllers/sidenav.js' %}"></script>
