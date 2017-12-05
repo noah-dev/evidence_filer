@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .models import DocMetadata
 
-import os, json, datetime, collections
+import os, json, datetime, collections, time
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES_FOLDER = os.path.join(BASE_DIR, "files/")
@@ -55,7 +55,7 @@ def upload(request):
                                 hlc_cmpt = "_",
                                 justification = doc_just,
                                 submitter = doc_submitter,
-                                upload_time = 0)
+                                upload_time = int(time.time()))
         new_doc.save()
                 
     return HttpResponseRedirect("/aaw")
