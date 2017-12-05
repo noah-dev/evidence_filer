@@ -2,55 +2,63 @@
 
 <md-content class="md-padding">
     <md-card flex>
+            <md-card-title>
+                <md-content class="md-padding" 
+                    md-colors="{background: 'amber'}"
+                    md-ink-ripple>
+                    <md-card-title-text>
+                    <span class="md-headline md-primary">File Repository</span>
+                    </md-card-title-text>
+                </md-content>
+            </md-card-title>
             <md-card-content>
-    <h1 align="absolute" class="title_heading">UMKC DOCUMENT FILTERING</h1>
-    <center>
-        <strong>Filter by Category</strong>
-        <select id="hlc" ng-model="cat" ng-change="rc.filterByHLC(cat)">
-            <option value="" selected="selected"></option>
-            <option value="cr1">cr1</option>
-            <option value="cr2">cr2</option>
-            <option value="cr3">cr3</option>
-            <option value="cr4">cr4</option>
-            <option value="cr5">cr5</option>
-        </select>
-        <strong>Filter by Department</strong>
-        <select id="dept" ng-model="dept" ng-change="rc.filterByHLC(dept)">
-            <option value="" selected="selected"></option>
-            <option value="CS">Computer Science</option>
-            <option value="EE">Electrical Engineering</option>
-            <option value="COMM">Communication Engineering</option>
-            <option value="NW">Networking</option>
-        </select>
+                    <center>
+                        <strong>Filter by Category</strong>
+                        <select id="hlc" ng-model="cat" ng-change="rc.filterByHLC(cat)">
+                            <option value="" selected="selected"></option>
+                            <option value="cr1">cr1</option>
+                            <option value="cr2">cr2</option>
+                            <option value="cr3">cr3</option>
+                            <option value="cr4">cr4</option>
+                            <option value="cr5">cr5</option>
+                        </select>
+                        <strong>Filter by Department</strong>
+                        <select id="dept" ng-model="dept" ng-change="rc.filterByHLC(dept)">
+                            <option value="" selected="selected"></option>
+                            <option value="CS">Computer Science</option>
+                            <option value="EE">Electrical Engineering</option>
+                            <option value="COMM">Communication Engineering</option>
+                            <option value="NW">Networking</option>
+                        </select>
 
-        <strong>Filter by Year</strong>
-        <select id="year" ng-model="year" ng-change="rc.filterByHLC(year)">
-            <option value="" selected="selected"></option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-        </select>
-        <table id="table" class="table table-striped">
-            <thead class="thead-inverse">
-                <tr>
-                    <th data-field="id">ID</th>
-                    <th data-field="file_link" data-formatter="LinkFormatter">Download</th>
-                    <th data-field="doc_id">Doc ID</th>
-                    <th data-field="doc_dept">Dept. Name</th>
-                    <th data-field="doc_year">Year</th>
-                    <th data-field="doc_name">Doc. Name</th>
-                    <th data-field="hlc_cat">HLC</th>
-                    <th data-field="hlc_cmpt">Component</th>
-                    <th data-field="justification">Justification</th>
-                    <th data-field="submitter">Submitter</th>
-                    <th data-field="upload_time">Timestamp</th>
-                </tr>
-            </thead>
-        </table>
-    </center>
-    </md-card-content>
+                        <strong>Filter by Year</strong>
+                        <select id="year" ng-model="year" ng-change="rc.filterByHLC(year)">
+                            <option value="" selected="selected"></option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                        </select>
+                        <table id="table" class="table table-striped">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="file_link" data-formatter="LinkFormatter">Download</th>
+                                    <th data-field="doc_id">Doc ID</th>
+                                    <th data-field="doc_dept">Dept. Name</th>
+                                    <th data-field="doc_year">Year</th>
+                                    <th data-field="doc_name">Doc. Name</th>
+                                    <th data-field="hlc_cat">HLC</th>
+                                    <th data-field="hlc_cmpt">Component</th>
+                                    <th data-field="justification">Justification</th>
+                                    <th data-field="submitter">Submitter</th>
+                                    <th data-field="upload_time">Timestamp</th>
+                                </tr>
+                            </thead>
+                        </table>
+                </center>
+        </md-card-content>
     </md-card>
 </md-content>

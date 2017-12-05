@@ -43,16 +43,6 @@
             </md-item-content>
         </md-content>
         <md-divider></md-divider>
-        <md-content ng-click="snc.navigate(1,'/aaw/taxonomy')"
-          md-colors="snc.selected[1] ? {background: 'yellow-800'} : {background: 'default'}">
-          <md-item-content md-ink-ripple layout="row" layout-align="start center">
-            <div class="inset">
-              <ng-md-icon class="side-nav-icon" icon="dashboard"></ng-md-icon>
-            </div>
-            <div class="inset">Taxonomy</div>
-          </md-item-content>
-        </md-content>
-        <md-divider></md-divider>
         <md-content ng-click="snc.navigate(2,'/aaw/retrival/')"
           md-colors="snc.selected[2] ? {background: 'yellow-800'} : {background: 'default'}">
           <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -60,6 +50,16 @@
               <ng-md-icon class="side-nav-icon" icon="view_list"></ng-md-icon>
             </div>
             <div class="inset">Retrival</div>
+          </md-item-content>
+        </md-content>
+        <md-divider></md-divider>
+        <md-content ng-click="snc.navigate(1,'/aaw/taxonomy')"
+        md-colors="snc.selected[1] ? {background: 'yellow-800'} : {background: 'default'}">
+          <md-item-content md-ink-ripple layout="row" layout-align="start center">
+            <div class="inset">
+              <ng-md-icon class="side-nav-icon" icon="dashboard"></ng-md-icon>
+            </div>
+            <div class="inset">Taxonomy</div>
           </md-item-content>
         </md-content>
         <md-divider></md-divider>
