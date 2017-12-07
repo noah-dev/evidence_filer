@@ -1,5 +1,8 @@
 # UMKCFS2017_Hackathon
 
+### Start:
+CD into "hlc_doc_database" and run "python manage.py runserver". See requirements.txt for required python packages. 
+
 ### Problem statement:
 
 UMKC will need a tool that will manage the 1,500+ documents collected and used to support the university’s Higher Learning Commission Accreditation Reaffirmation process. Help us keep UMKC accredited!
