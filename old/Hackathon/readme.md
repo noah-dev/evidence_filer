@@ -1,1 +1,0 @@
-Contributed by Archana - moved here to reduce confusion between Hackathon vs hlc_doc_database
